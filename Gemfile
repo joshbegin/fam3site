@@ -6,6 +6,7 @@ gem 'rails', '3.1.1'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
+gem 'heroku'
 
 
 # Gems used only for assets and not required
@@ -17,6 +18,21 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem "haml"
+gem "haml-rails", :group => :development
+gem "database_cleaner", :group => :test
+
+group :development, :test do
+  gem "rspec-rails"
+  gem "factory_girl_rails", :group => :test
+  gem "cucumber-rails", :group => :test
+  gem 'rb-fsevent' #, :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'guard-rspec'
+  gem 'guard-livereload'
+  gem 'growl'
+  gem "capybara"
+  gem "launchy"
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
