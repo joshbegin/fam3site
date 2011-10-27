@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+"test seed line"
+if Gender.count < 2
+  puts "Creating genders"
+    genders = Gender.create([
+      { :name => 'Male' }, 
+      { :name => 'Female' }
+    ])
+end

@@ -1,10 +1,14 @@
 Fam3site::Application.routes.draw do
-  get "pages/home"
+  resources :users
 
-  get "pages/about"
+  root :to => "pages#home"
 
-  get "pages/contact"
-
+  match '/signup',  :to => 'users#new'
+  match '/signin',  :to => 'sessions#new'
+  match '/signout', :to => 'sessions#destroy'
+  match '/contact', :to => 'pages#contact'
+  match '/about',   :to => 'pages#about'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
