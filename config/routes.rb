@@ -1,5 +1,6 @@
 Fam3site::Application.routes.draw do
   resources :users
+  resources :sessions
 
   root :to => "pages#home"
 

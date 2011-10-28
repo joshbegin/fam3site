@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   def create
     @title = "Create user"
     @user = User.new(params[:user])
-
+    
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -83,7 +83,7 @@ class UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to users_url }
+      format.html { redirect_to users_url, notice: 'User was successfully deleted.' }
       format.json { head :ok }
     end
   end

@@ -9,9 +9,9 @@ describe User do
       :last_name => "User",
       :username => "testuser",
       :birthdate => "1980-01-01",
-      :gender_id => 1
-   #   :password => "foobar",
-   #   :password_confirmation => "foobar"
+      :gender_id => 1,
+      :password => "foobar",
+      :password_confirmation => "foobar"
     }
     @addr = {
       :line_1 => "123 some st",

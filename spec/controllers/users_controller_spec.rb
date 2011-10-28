@@ -30,8 +30,9 @@ describe UsersController do
       :last_name => "User",
       :username => "testuser",
       :birthdate => "1980-01-01",
-      :gender_id => 1
-#      :password_digest => "12345"
+      :gender_id => 1,
+      :password => "password",
+      :password_confirmation => "password"
     }    
   end
 
