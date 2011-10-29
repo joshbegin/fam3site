@@ -19,5 +19,9 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :username, :birthdate, :gender_id
   validates_presence_of :password, :on => :create
   validates_uniqueness_of :username
+  validates :password, :confirmation => true,
+            :length => { :within => 6..40 }
+  validates :password_confirmation, :presence => true
+            
   
 end
