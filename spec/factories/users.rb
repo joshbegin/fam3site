@@ -8,6 +8,7 @@ FactoryGirl.define do
     gender_id 1
     birthdate "2011-10-24"
     username "MyString"
-    password_digest "MyString"
+    password "foobar"
+    password_confirmation "foobar"
   end
 end

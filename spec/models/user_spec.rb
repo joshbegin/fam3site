@@ -29,8 +29,9 @@ describe User do
     }
     @params = { 
       :user => {
-        :name => "Joe", 
-        :email => "user@example.com", 
+        :first_name => "Joe", 
+        :last_name => "Schmoe",
+        :username => "user1", 
         :password => "foobar", 
         :password_confirmation => "foobar", 
         :birthdate => "1980-01-01",
@@ -107,48 +108,48 @@ describe User do
     user.gender.name.should == "Male"
   end
   
-#  it "should create a new address given valid attributes" do
-#    user = User.create!(@attr)
-#    user.addresses.create!(@addr.merge(:user_id => user.id))
-#  end
+  it "should create a new address given valid attributes" do
+    user = User.create!(@attr)
+    user.addresses.create!(@addr.merge(:user_id => user.id))
+  end
   
-#  it "should allow multiple addresses" do
-#    user = User.create!(@attr)
-#    user.addresses.create!(@addr.merge(:user_id => user.id))
-#    user.addresses.create!(@addr.merge(:user_id => user.id, :line_1 => "second address"))
-#  end
+  it "should allow multiple addresses" do
+    user = User.create!(@attr)
+    user.addresses.create!(@addr.merge(:user_id => user.id))
+    user.addresses.create!(@addr.merge(:user_id => user.id, :line_1 => "second address"))
+  end
   
-#  it "should create a new email given valid attributes" do
-#    user = User.create!(@attr)
-#    user.emails.create!(@email.merge(:user_id => user.id))
-#  end
+  it "should create a new email given valid attributes" do
+    user = User.create!(@attr)
+    user.emails.create!(@email.merge(:user_id => user.id))
+  end
 
-#  it "should allow many emails" do
-#    user = User.create!(@attr)
-#    user.emails.create!(@email.merge(:user_id => user.id))
-#    user.emails.create!(@email.merge(:user_id => user.id, :address => "test@example.com"))
-#  end
+  it "should allow many emails" do
+    user = User.create!(@attr)
+    user.emails.create!(@email.merge(:user_id => user.id))
+    user.emails.create!(@email.merge(:user_id => user.id, :address => "test@example.com"))
+  end
 
-#  it "should create a new phone number given valid attributes" do
-#    user = User.create!(@attr)
-#    user.phones.create!(@phone.merge(:user_id => user.id))
-#  end
+  it "should create a new phone number given valid attributes" do
+    user = User.create!(@attr)
+    user.phones.create!(@phone.merge(:user_id => user.id))
+  end
   
-#  it "should allow many phones" do
-#    user = User.create!(@attr)
-#    user.phones.create!(@phone.merge(:user_id => user.id))
-#    user.phones.create!(@phone.merge(:user_id => user.id, :number => "2223334444"))
-#  end
+  it "should allow many phones" do
+    user = User.create!(@attr)
+    user.phones.create!(@phone.merge(:user_id => user.id))
+    user.phones.create!(@phone.merge(:user_id => user.id, :number => "2223334444"))
+  end
   
-#  it "should create phones through user" do
-#    user = User.create!(@params[:user])
-#  end
+  it "should create phones through user" do
+    user = User.create!(@params[:user])
+  end
   
-#  it "should delete phones when user is deleted" do
-#    user = User.create!(@params[:user])
-#    user.destroy
-#    user.phones.should be_blank
-#  end
+  it "should delete phones when user is deleted" do
+    user = User.create!(@params[:user])
+    user.destroy
+    user.phones.should be_blank
+  end
 
  describe "passwords" do
 
