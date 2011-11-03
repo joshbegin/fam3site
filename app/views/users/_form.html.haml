@@ -17,11 +17,15 @@
     = f.text_field :last_name
   .field
     = f.label :gender_id
-    = f.number_field :gender_id
+    = collection_select(:user, :gender_id, Gender.all, :id, :name, :prompt => true)
   .field
     = f.label :birthdate
-    = f.date_select :birthdate
+    = f.text_field :birthdate
   .field
+    = f.fields_for :phones do |builder|
+      = render 'phone_fields', :f => builder
+      %br
+  .field  
     = f.label :username
     = f.text_field :username
   .field

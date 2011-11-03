@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   def new
     @title = "Create user"
     @user = User.new
-
+    1.times { @user.phones.build }
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }

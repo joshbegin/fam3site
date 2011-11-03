@@ -1,0 +1,3 @@
+= f.label :content, "Phone Number"
+= f.telephone_field :number
+= collection_select(:address, :address_type_id, AddressType.all, :id, :name, :prompt => true)
