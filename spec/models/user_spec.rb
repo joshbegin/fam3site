@@ -27,7 +27,7 @@ describe User do
     @phone = {
       :number => "111223333"
     }
-    params = { 
+    @params = { 
       :user => {
         :first_name => "Joe", 
         :last_name => "Schmoe",
