@@ -1,5 +1,18 @@
 class UsersController < ApplicationController
-
+  before_filter :get_user, :only => [:show, :edit, :update, :destroy]
+  before_filter :user_auth, :only => [:edit, :update, :destroy]
+  
+  def user_auth
+    if session[:user_id] != @user.id
+      redirect_to users_path,
+        :notice => "Users can only change their own account"
+    end
+  end
+  
+  def get_user
+    @user = User.find(params[:id])
+  end
+  
   # GET /users
   # GET /users.json
   def index
@@ -16,7 +29,6 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @title = "User details"
-    @user = User.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -39,7 +51,6 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @title = "Edit user"
-    @user = User.find(params[:id])
   end
 
   # POST /users
@@ -63,7 +74,6 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @title = "Edit user"
-    @user = User.find(params[:id])
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -80,7 +90,6 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @title = "Delete user"
-    @user = User.find(params[:id])
     @user.destroy
 
     respond_to do |format|
@@ -89,6 +98,4 @@ class UsersController < ApplicationController
     end
   end
   
- 
-
 end
