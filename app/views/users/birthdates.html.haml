@@ -1,0 +1,13 @@
+%h1 User birthdates
+
+- @user_months.keys.sort.each do |month|
+  %b= month.strftime("%B") 
+  %table
+    %tr
+      %th Name 
+      %th Birthdate
+    - @user_months[month].each do |user|
+      %tr{:class => cycle('rowA', 'rowB')}
+        %td= link_to user.full_name, user
+        %td= user.birthdate.strftime("%B %d")
+  %br

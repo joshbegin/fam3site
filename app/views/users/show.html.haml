@@ -1,25 +1,21 @@
 %p
-  %b First name:
-  = @user.first_name
-%p
-  %b Middle name:
-  = @user.middle_name
-%p
-  %b Last name:
-  = @user.last_name
-%p
-  %b Gender:
-  = @user.gender_id
-%p
-  %b Birthdate:
-  = @user.birthdate
+  %b Name:
+  = @user.full_name
 %p
   %b Username:
   = @user.username
 %p
-  %b Password digest:
-  = @user.password_digest
-
+  %b Gender:
+  = @user.gender.name
+%p
+  %b Birthdate:
+  = @user.birthdate
+%p
+  %b Phones:
+  - @user.phones.each do |phone|
+    = number_to_phone(phone.number, :area_code => true, :delimiter => ' ')
+    = phone.phone_type
+   
 = link_to 'Edit', edit_user_path(@user)
 \|
-= link_to 'Back', users_path
+= link_to 'Back', :back

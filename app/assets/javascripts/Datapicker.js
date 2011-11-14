@@ -3,6 +3,7 @@ $(function () {
   $("#user_birthdate").datepicker({ 
   	changeYear: true, 
   	yearRange: 'c-100:c', 
-  	changeMonth: true 
+  	changeMonth: true,
+  	dateFormat: 'dd-mm-yy' 
   });  
 });

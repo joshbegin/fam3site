@@ -16,12 +16,16 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @title = "Users"
-    @users = User.all
+    if current_user
+      @title = "Users"
+      @users = User.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @users }
+      end
+    else
+      redirect_to root_path, :notice => "Must be logged in to view Users" 
     end
   end
 
@@ -41,11 +45,17 @@ class UsersController < ApplicationController
   def new
     @title = "Create user"
     @user = User.new
-    1.times { @user.phones.build }
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @user }
+    
+    if current_user
+      redirect_to users_path, notice: "Only new users can sign up"
+    else
+      1.times { @user.phones.build }
+      respond_to do |format|
+        format.html # new.html.erb
+        format.json { render json: @user }
+      end
     end
+    
   end
 
   # GET /users/1/edit
@@ -59,13 +69,15 @@ class UsersController < ApplicationController
     @title = "Create user"
     @user = User.new(params[:user])
     
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render json: @user, status: :created, location: @user }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+    unless current_user
+      respond_to do |format|
+        if @user.save
+          format.html { redirect_to @user, notice: "User #{@user.username} was successfully created." }
+          format.json { render json: @user, status: :created, location: @user }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -95,6 +107,21 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully deleted.' }
       format.json { head :ok }
+    end
+  end
+  
+def birthdates
+    if current_user
+      @title = "Birthdates"
+      @users = User.all
+      @user_months = @users.group_by { |t| t.birthdate.beginning_of_month }
+
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @users }
+      end
+    else
+      redirect_to root_path, :notice => "Must be logged in to view users" 
     end
   end
   

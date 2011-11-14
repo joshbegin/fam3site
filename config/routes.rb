@@ -9,6 +9,9 @@ Fam3site::Application.routes.draw do
   match '/signout', :to => 'sessions#destroy'
   match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about'
+  match '/birthdates', :to => 'users#birthdates'
+  match '/phones', :to => 'users#phones'
+  match '/addresses', :to => 'users#addresses'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

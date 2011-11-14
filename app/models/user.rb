@@ -23,5 +23,7 @@ class User < ActiveRecord::Base
             :length => { :within => 6..40 }
   validates :password_confirmation, :presence => true
             
-  
+  def full_name
+    @full_name = "#{first_name} #{middle_name} #{last_name}"
+  end
 end

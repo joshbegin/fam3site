@@ -8,16 +8,15 @@
     = csrf_meta_tags
     
   %body
+    %header
+      %nav
+        = render 'layouts/login'
+      = link_to "Family Site", root_path, :class => "logo"
+      %br
+      %navbar
+        = render 'layouts/navigation'
     %section
-      %header
-        = link_to image_tag("logo.png", :alt => "Family Site"), root_path
-        %nav
-          - if current_user
-            Logged in as #{current_user.username}
-            = link_to "Log out", signout_path
-          - else
-            = link_to "Sign up", signup_path
-            or
-            = link_to "Log in", signin_path
-      %p#notice= notice
+      - flash.each do |name, msg|
+        = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
       = yield
+    = debug(params) if Rails.env.development? 
