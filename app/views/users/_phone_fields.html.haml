@@ -1,3 +1,6 @@
-= f.label :content, "Phone Number"
-= f.telephone_field :number
-= collection_select(:phone, :phone_type_id, PhoneType.all, :id, :name, :prompt => true)
+.grid_2
+  = f.label :content, "Phone Number"
+.grid_2
+  = f.telephone_field :number
+.grid_2
+  = f.collection_select :phone_type_id, PhoneType.all, :id, :name, :prompt => true

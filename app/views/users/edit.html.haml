@@ -1,7 +1,9 @@
-%h1 Editing user
+.grid_12
+  %h1 Editing user
 
 = render 'form'
 
-= link_to 'Show', @user
-\|
-= link_to 'Back', users_path
+.grid_12.show
+  = link_to 'Show', @user
+  \|
+  = link_to 'Back', users_path

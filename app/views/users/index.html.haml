@@ -1,19 +1,20 @@
-%h1 All users
+.grid_12
+  %h1 All users
 
-%table
-  %tr
-    %th Username
-    %th Name 
-    %th Gender
-    %th
-    %th
-    %th
+  %table
+    %tr
+      %th Username
+      %th Name 
+      %th Gender
+      %th
+      %th
+      %th
 
-  - @users.each do |user|
-    %tr{:class => cycle('rowA', 'rowB')}
-      %td= user.username
-      %td= user.full_name
-      %td= user.gender.name
-      %td= link_to 'Show', user
-      %td= link_to 'Edit', edit_user_path(user)
-      %td= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete
+    - @users.each do |user|
+      %tr{:class => cycle('rowA', 'rowB')}
+        %td= user.username
+        %td= user.full_name
+        %td= user.gender.name
+        %td= link_to 'Show', user
+        %td= link_to 'Edit', edit_user_path(user)
+        %td= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete

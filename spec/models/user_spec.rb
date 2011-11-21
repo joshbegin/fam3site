@@ -25,7 +25,8 @@ describe User do
       :address => "user@sample.com"
     }
     @phone = {
-      :number => "111223333"
+      :number => "1112223333",
+      :phone_type_id => 1
     }
     @params = { 
       :user => {

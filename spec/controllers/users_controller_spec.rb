@@ -21,6 +21,10 @@
 describe UsersController do
   render_views
 
+  before(:each) do
+    user = User.create!(valid_attributes)
+  end
+  
   # This should return the minimal set of attributes required to create a valid
   # User. As you add validations to User, be sure to
   # update the return value of this method accordingly.

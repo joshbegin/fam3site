@@ -4,8 +4,8 @@ class UsersController < ApplicationController
   
   def user_auth
     if session[:user_id] != @user.id
-      redirect_to users_path,
-        :notice => "Users can only change their own account"
+      flash[:failure] = "Users can only change their own account"
+      redirect_to :back
     end
   end
   
@@ -18,14 +18,15 @@ class UsersController < ApplicationController
   def index
     if current_user
       @title = "Users"
-      @users = User.all
+      @users = User.ordered.all
 
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @users }
       end
     else
-      redirect_to root_path, :notice => "Must be logged in to view Users" 
+      flash[:failure] = "Must be logged in to view Users"
+      redirect_to root_path 
     end
   end
 
@@ -45,11 +46,17 @@ class UsersController < ApplicationController
   def new
     @title = "Create user"
     @user = User.new
-    
+    puts "\n\n\n\n Here I am in new\n\n\n\n"
+
     if current_user
-      redirect_to users_path, notice: "Only new users can sign up"
+      flash[:failure] = "Only new users can sign up"
+      redirect_to users_path
     else
-      1.times { @user.phones.build }
+      #1.times do
+        @user.phones.build
+        @user.addresses.build
+        @user.emails.build
+      #end
       respond_to do |format|
         format.html # new.html.erb
         format.json { render json: @user }
@@ -68,11 +75,16 @@ class UsersController < ApplicationController
   def create
     @title = "Create user"
     @user = User.new(params[:user])
-    
+    puts "\n\n\n\n Here I am in create\n\n\n\n"
+
     unless current_user
       respond_to do |format|
         if @user.save
-          format.html { redirect_to @user, notice: "User #{@user.username} was successfully created." }
+          session[:user_id] = @user.id
+          format.html { 
+            flash[:success] = "User #{@user.username} was successfully created."
+            redirect_to @user 
+            }
           format.json { render json: @user, status: :created, location: @user }
         else
           format.html { render action: "new" }
@@ -89,7 +101,10 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { 
+          flash[:success] = "User was successfully updated."
+          redirect_to @user
+          }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -105,7 +120,10 @@ class UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully deleted.' }
+      format.html { 
+        flash[:success] = "User was successfully deleted."
+        redirect_to users_url
+        }
       format.json { head :ok }
     end
   end
@@ -114,14 +132,15 @@ def birthdates
     if current_user
       @title = "Birthdates"
       @users = User.all
-      @user_months = @users.group_by { |t| t.birthdate.beginning_of_month }
+      @user_months = @users.group_by { |t| t.birthdate.month }
 
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @users }
       end
     else
-      redirect_to root_path, :notice => "Must be logged in to view users" 
+      flash[:failure] = "Must be logged in to view users"
+      redirect_to root_path
     end
   end
   

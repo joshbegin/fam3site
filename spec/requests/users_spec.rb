@@ -25,8 +25,8 @@ describe "Users" do
       fill_in "Last name", :with => "Jingleheimer"
       fill_in "Birthdate", :with => '01/01/1980'
       select "Male", :from => 'user_gender_id'
-#      fill_in 'user_phones_attributes_0_content', :with => '1234567890'
-#      select "Home", :from => 'user_phones_phone_type_id'
+      fill_in 'user_phones_attributes_0_content', :with => '1234567890'
+      select "Home", :from => 'user_phones_phone_type_id'
       fill_in "Username", :with => 'testuser'
       fill_in "Password", :with => "pass123"
       fill_in "Password confirmation", :with => "pass123"
@@ -36,4 +36,7 @@ describe "Users" do
     end
   end
   
+  it "uses client side validation"
+  
+  it "should use ajax to add new fields"
 end

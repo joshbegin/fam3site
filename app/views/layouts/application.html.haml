@@ -3,20 +3,31 @@
   %head
     %title 
       = "Family Site | " + @title
-    = stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/cupertino/jquery-ui.css", :application
+    = stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/cupertino/jquery-ui.css", "http://fonts.googleapis.com/css?family=Questrial|Annie+Use+Your+Telescope", :application
     = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js", :application
     = csrf_meta_tags
     
   %body
     %header
-      %nav
-        = render 'layouts/login'
-      = link_to "Family Site", root_path, :class => "logo"
-      %br
-      %navbar
-        = render 'layouts/navigation'
+      .container_12.round
+        .grid_9
+          - if current_user
+            = link_to "Family Site", users_path, :class => "logo"
+          - else
+            = link_to "Family Site", root_path, :class => "logo"
+        %nav.grid_3
+          = render 'layouts/login'
+        .clear
+        .grid_12
+          %navbar
+            = render 'layouts/navigation'
+        .clear
+    %br 
     %section
-      - flash.each do |name, msg|
-        = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
-      = yield
-    = debug(params) if Rails.env.development? 
+      .container_12
+        .grid_12
+          - flash.each do |name, msg|
+            = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
+        = yield
+    %footer
+      -# = debug(params) if Rails.env.development? 

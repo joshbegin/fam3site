@@ -1,13 +1,16 @@
-%section
-  %h1 Log in
-  = form_tag sessions_path do
-    .field
-      = label_tag :username
-      = text_field_tag :username, params[:username]
-    .field
-      = label_tag :password
-      = password_field_tag :password
+.grid_2.suffix_10
+  %h1 Log in  
+= form_tag sessions_path do
+  .grid_1
+    = label_tag :username
+  .grid_2.suffix_9
+    = text_field_tag :username, params[:username]
+  .grid_1
+    = label_tag :password
+  .grid_2.suffix_9
+    = password_field_tag :password
+  .grid_1.suffix_11.show
     .actions= submit_tag "Log in"
-  %br
-  Need a userid? 
-  = link_to "Sign up", signup_path
+  .grid_12.show
+    Need a userid? 
+    = link_to "Sign up", signup_path

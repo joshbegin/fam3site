@@ -1,38 +1,50 @@
 = form_for @user do |f|
-  -if @user.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
-      %ul
-        - @user.errors.full_messages.each do |msg|
-          %li= msg
+  .grid_12
+    -if @user.errors.any?
+      #error_explanation
+        %h3= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+        %ul
+          - @user.errors.full_messages.each do |msg|
+            %li= msg
 
-  .field
+  .grid_2
     = f.label :first_name
+  .grid_10
     = f.text_field :first_name
-  .field
+  .grid_2
     = f.label :middle_name
+  .grid_10
     = f.text_field :middle_name
-  .field
+  .grid_2
     = f.label :last_name
+  .grid_10
     = f.text_field :last_name
-  .field
+  .grid_2
     = f.label :gender_id
+  .grid_10
     = collection_select(:user, :gender_id, Gender.all, :id, :name, :prompt => true)
-  .field
+  .grid_2
     = f.label :birthdate
+  .grid_10
     = f.text_field :birthdate
-  .field
-    = f.fields_for :phones do |builder|
-      = render 'phone_fields', :f => builder
-      %br
-  .field  
+  = f.fields_for :phones do |builder|
+    = render 'phone_fields', :f => builder
+  .grid_12
+    Addresses:     
+  = f.fields_for :addresses do |address|
+    = render 'address_fields', :a => address
+  .grid_2 
     = f.label :username
+  .grid_10
     = f.text_field :username
-  .field
+  .grid_2
     = f.label :password
+  .grid_10
     = f.password_field :password
-  .field
+  .grid_2
     = f.label :password_confirmation
+  .grid_10
     = f.password_field :password_confirmation
-  .actions
-    = f.submit 'Sign up'
+  .grid_12.show
+    .actions
+      = f.submit 'Save'
