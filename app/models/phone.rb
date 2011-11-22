@@ -5,6 +5,6 @@ class Phone < ActiveRecord::Base
   
   attr_accessible :number, :phone_type_id
   
-  validates_format_of :number, :with => /\d{10}/
+  validates_format_of :number, :with => /\d*/
   
 end

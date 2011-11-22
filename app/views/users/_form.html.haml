@@ -10,41 +10,43 @@
   .grid_2
     = f.label :first_name
   .grid_10
-    = f.text_field :first_name
+    = f.text_field :first_name, :size => 15
   .grid_2
     = f.label :middle_name
   .grid_10
-    = f.text_field :middle_name
+    = f.text_field :middle_name, :size => 2
   .grid_2
     = f.label :last_name
   .grid_10
-    = f.text_field :last_name
+    = f.text_field :last_name, :size => 15
   .grid_2
     = f.label :gender_id
   .grid_10
-    = collection_select(:user, :gender_id, Gender.all, :id, :name, :prompt => true)
+    = collection_select(:user, :gender_id, Gender.all, :id, :name, :prompt => true, :size => 10)
   .grid_2
     = f.label :birthdate
   .grid_10
-    = f.text_field :birthdate
+    = f.text_field :birthdate, :size => 10
+  .grid_12
+    Phone Numbers:
   = f.fields_for :phones do |builder|
     = render 'phone_fields', :f => builder
-  .grid_12
-    Addresses:     
-  = f.fields_for :addresses do |address|
-    = render 'address_fields', :a => address
+  / .grid_12
+  /   Addresses:     
+  / = f.fields_for :addresses do |address|
+  /   = render 'address_fields', :a => address
   .grid_2 
     = f.label :username
   .grid_10
-    = f.text_field :username
+    = f.text_field :username, :size => 20
   .grid_2
     = f.label :password
   .grid_10
-    = f.password_field :password
+    = f.password_field :password, :size => 20
   .grid_2
     = f.label :password_confirmation
   .grid_10
-    = f.password_field :password_confirmation
-  .grid_12.show
-    .actions
+    = f.password_field :password_confirmation, :size => 20
+  .actions
+    .grid_12.show
       = f.submit 'Save'

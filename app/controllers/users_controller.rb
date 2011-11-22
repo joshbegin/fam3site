@@ -46,17 +46,16 @@ class UsersController < ApplicationController
   def new
     @title = "Create user"
     @user = User.new
-    puts "\n\n\n\n Here I am in new\n\n\n\n"
-
+    
     if current_user
       flash[:failure] = "Only new users can sign up"
       redirect_to users_path
     else
-      #1.times do
+      3.times do
         @user.phones.build
-        @user.addresses.build
-        @user.emails.build
-      #end
+      #@user.addresses.build
+      #@user.emails.build
+      end
       respond_to do |format|
         format.html # new.html.erb
         format.json { render json: @user }
@@ -75,14 +74,13 @@ class UsersController < ApplicationController
   def create
     @title = "Create user"
     @user = User.new(params[:user])
-    puts "\n\n\n\n Here I am in create\n\n\n\n"
-
+    
     unless current_user
       respond_to do |format|
         if @user.save
           session[:user_id] = @user.id
           format.html { 
-            flash[:success] = "User #{@user.username} was successfully created."
+            flash[:success] = "User \"#{@user.username}\" was successfully created."
             redirect_to @user 
             }
           format.json { render json: @user, status: :created, location: @user }

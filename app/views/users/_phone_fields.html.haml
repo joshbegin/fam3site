@@ -1,6 +1,6 @@
+.prefix_1.grid_1
+  = f.label :content, "Number"
 .grid_2
-  = f.label :content, "Phone Number"
-.grid_2
-  = f.telephone_field :number
-.grid_2
+  = f.telephone_field :number, :size => 20
+.grid_2.suffix_6
   = f.collection_select :phone_type_id, PhoneType.all, :id, :name, :prompt => true
