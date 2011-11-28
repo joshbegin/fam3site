@@ -25,8 +25,11 @@
     = collection_select(:user, :gender_id, Gender.all, :id, :name, :prompt => true, :size => 10)
   .grid_2
     = f.label :birthdate
-  .grid_10
+  .grid_2
     = f.text_field :birthdate, :size => 10
+  .grid_8
+    .note
+      Format: yyyy-mm-dd
   .grid_12
     Phone Numbers:
   = f.fields_for :phones do |builder|

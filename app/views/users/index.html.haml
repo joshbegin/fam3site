@@ -1,11 +1,20 @@
 .grid_12
   %h1 All users
 
+.grid_12
+  = form_for @search do |f|
+    = f.label :first_name_contains, "First Name"
+    = f.text_field :first_name_contains
+    = f.label :last_name_contains, "Last Name"
+    = f.text_field :last_name_contains, :include_blank => true
+    = f.submit
+  
+.all_users
   %table
     %tr
-      %th Username
-      %th Name 
-      %th Gender
+      %th= sort_link @search, :username
+      %th= sort_link @search, :first_name, "Name" 
+      %th= sort_link @search, :gender_id, "Gender"
       %th
       %th
       %th

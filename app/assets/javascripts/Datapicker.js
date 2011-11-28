@@ -4,6 +4,6 @@ $(function () {
   	changeYear: true, 
   	yearRange: 'c-100:c', 
   	changeMonth: true,
-  	dateFormat: 'dd-mm-yy' 
+  	dateFormat: 'yy-mm-dd' 
   });  
 });

@@ -7,6 +7,7 @@ gem 'rails', '3.1.1'
 
 gem 'pg'
 gem 'heroku'
+gem 'meta_search'
 #gem 'compass', ">= 0.11.5"
 
 # Gems used only for assets and not required
@@ -32,6 +33,7 @@ group :development, :test do
   gem 'growl'
   gem "capybara"
   gem "launchy"
+  gem "hirb"
 end
 
 # To use ActiveModel has_secure_password

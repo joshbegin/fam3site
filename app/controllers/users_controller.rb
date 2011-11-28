@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   before_filter :get_user, :only => [:show, :edit, :update, :destroy]
   before_filter :user_auth, :only => [:edit, :update, :destroy]
-  
+  helper_method :sort_column, :sort_direction
+
   def user_auth
     if session[:user_id] != @user.id
       flash[:failure] = "Users can only change their own account"
@@ -18,7 +19,9 @@ class UsersController < ApplicationController
   def index
     if current_user
       @title = "Users"
-      @users = User.ordered.all
+      @search = User.search(params[:search])
+      @users = @search.all
+     # @users = User.order(sort_column + ' ' + sort_direction)
 
       respond_to do |format|
         format.html # index.html.erb
@@ -33,11 +36,16 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @title = "User details"
+    if current_user
+      @title = "User details"
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @user }
+      end
+    else
+      flash[:failure] = "Must be logged in to view Users"
+      redirect_to root_path 
     end
   end
 
@@ -116,11 +124,12 @@ class UsersController < ApplicationController
   def destroy
     @title = "Delete user"
     @user.destroy
+    session[:user_id] = nil
 
     respond_to do |format|
       format.html { 
         flash[:success] = "User was successfully deleted."
-        redirect_to users_url
+        redirect_to root_path
         }
       format.json { head :ok }
     end
@@ -141,5 +150,32 @@ def birthdates
       redirect_to root_path
     end
   end
+
+  def phones
+    if current_user
+      @title = "Phone Numbers"
+      @users = User.all
+      @home_phones = Phone.search :phone_type_id_equals => 1
+#      @home_phones = Phone.where "phone_type_id = 1"
+      @work_phones = Phone.where "phone_type_id = 2"
+      @cell_phones = Phone.where "phone_type_id = 3"
+      
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @users }
+      end
+    else
+      flash[:failure] = "Must be logged in to view users"
+      redirect_to root_path
+    end
+  end
   
+  private
+  def sort_column
+    User.column_names.include?(params[:sort]) ? params[:sort] : "first_name"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"  
+  end
 end
