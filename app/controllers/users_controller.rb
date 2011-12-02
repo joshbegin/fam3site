@@ -154,7 +154,9 @@ def birthdates
   def phones
     if current_user
       @title = "Phone Numbers"
-      @users = User.all
+      @search = User.search(params[:search])
+      @users = @search.all
+
       @home_phones = Phone.search :phone_type_id_equals => 1
 #      @home_phones = Phone.where "phone_type_id = 1"
       @work_phones = Phone.where "phone_type_id = 2"
