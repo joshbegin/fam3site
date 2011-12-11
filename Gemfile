@@ -8,6 +8,7 @@ gem 'rails', '3.1.1'
 gem 'pg'
 gem 'heroku'
 gem 'meta_search'
+gem 'em-websocket', '0.3.5'
 #gem 'compass', ">= 0.11.5"
 
 # Gems used only for assets and not required
@@ -27,7 +28,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "factory_girl_rails", :group => :test
   gem "cucumber-rails", :group => :test
-  gem 'rb-fsevent' #, :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'rb-fsevent', :git => 'git://github.com/ttilley/rb-fsevent.git', :branch => 'pre-compiled-gem-one-off' #, :require => false if RUBY_PLATFORM =~ /darwin/i
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'growl'

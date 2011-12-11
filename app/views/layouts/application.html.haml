@@ -7,7 +7,7 @@
     = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js", :application
     = csrf_meta_tags
     
-  %body
+  %body{ class: controller.controller_name }
     %header
       .container_12.round
         .grid_9
@@ -29,5 +29,7 @@
           - flash.each do |name, msg|
             = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
         = yield
+    %br
     %footer
+      
       -# = debug(params) if Rails.env.development? 

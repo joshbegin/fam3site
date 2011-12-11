@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-  before_filter :get_user, :only => [:show, :edit, :update, :destroy]
+  before_filter :get_user, :only => [:edit, :update, :destroy]
   before_filter :user_auth, :only => [:edit, :update, :destroy]
-  helper_method :sort_column, :sort_direction
+ 
+  #need to add rescue ActiveRecord::RecordNotFound, etc...
 
   def user_auth
     if session[:user_id] != @user.id
@@ -19,10 +20,10 @@ class UsersController < ApplicationController
   def index
     if current_user
       @title = "Users"
+      # .search is used by meta_search
       @search = User.search(params[:search])
       @users = @search.all
-     # @users = User.order(sort_column + ' ' + sort_direction)
-
+    
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @users }
@@ -37,15 +38,22 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     if current_user
-      @title = "User details"
-
-      respond_to do |format|
-        format.html # show.html.erb
-        format.json { render json: @user }
+      begin
+        @title = "User details"
+        @user = User.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        flash[:failure] = "User does not exist"
+        redirect_to users_path     
+      else
+        respond_to do |format|
+          format.html # show.html.erb
+          format.json { render json: @user }
+        end
       end
     else
       flash[:failure] = "Must be logged in to view Users"
-      redirect_to root_path 
+      redirect_to root_path
+
     end
   end
 
@@ -75,6 +83,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @title = "Edit user"
+    @user.phones.build
   end
 
   # POST /users
@@ -135,49 +144,4 @@ class UsersController < ApplicationController
     end
   end
   
-def birthdates
-    if current_user
-      @title = "Birthdates"
-      @users = User.all
-      @user_months = @users.group_by { |t| t.birthdate.month }
-
-      respond_to do |format|
-        format.html # index.html.erb
-        format.json { render json: @users }
-      end
-    else
-      flash[:failure] = "Must be logged in to view users"
-      redirect_to root_path
-    end
-  end
-
-  def phones
-    if current_user
-      @title = "Phone Numbers"
-      @search = User.search(params[:search])
-      @users = @search.all
-
-      @home_phones = Phone.search :phone_type_id_equals => 1
-#      @home_phones = Phone.where "phone_type_id = 1"
-      @work_phones = Phone.where "phone_type_id = 2"
-      @cell_phones = Phone.where "phone_type_id = 3"
-      
-      respond_to do |format|
-        format.html # index.html.erb
-        format.json { render json: @users }
-      end
-    else
-      flash[:failure] = "Must be logged in to view users"
-      redirect_to root_path
-    end
-  end
-  
-  private
-  def sort_column
-    User.column_names.include?(params[:sort]) ? params[:sort] : "first_name"
-  end
-  
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"  
-  end
 end

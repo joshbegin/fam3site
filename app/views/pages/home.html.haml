@@ -2,4 +2,5 @@
   = link_to "Sign up!", signup_path, :class => "button"
 .grid_2.prefix_2.suffix_3
   = link_to "Log in", signin_path, :class => "button"
-
+.grid_12.center
+  = "Currently #{@users.count} users are signed up for this site"

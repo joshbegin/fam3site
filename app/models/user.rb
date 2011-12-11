@@ -17,6 +17,10 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :addresses, :allow_destroy => true, :reject_if => lambda { |a| a[:line_1].blank? }
 #  accepts_nested_attributes_for :emails, :allow_destroy => true, :reject_if => lambda { |a| a[:content].blank? }
 
+  # after_initialize do |user|
+  #   user.phones
+  # end  
+
   before_save(:on => :create) do
     self.first_name = first_name.capitalize
     self.middle_name = middle_name.capitalize
@@ -46,9 +50,11 @@ class User < ActiveRecord::Base
   validates :password, :confirmation => true,
             :length => { :within => 6..40 }
   validates :password_confirmation, :presence => true
+  validates_associated :phones#, :addresses#, :emails
   #validates_format_of :birthdate, :with => /\A[0-3][0-9]\-[0-1][0-9]\-[0-9]+\Z/
-      
-  #scope :ordered, order("first_name ASC")
+  
+  #default scope overrides meta_search sorting...    
+  #default_scope order('first_name ASC')
             
   def full_name
     @full_name = "#{first_name} #{middle_name} #{last_name}"
