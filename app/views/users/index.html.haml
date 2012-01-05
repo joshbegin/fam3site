@@ -13,18 +13,22 @@
   .all_users
     %table
       %tr
-        %th= sort_link @search, :username
-        %th= sort_link @search, :first_name, "Name" 
+        %th= sort_link @search, :first_name
+        %th= sort_link @search, :last_name 
         %th= sort_link @search, :gender_id, "Gender"
+        %th= sort_link @search, :birthdate
+        %th= sort_link @search, :username
         %th
         %th
         %th
 
       - @users.each do |user|
         %tr{:class => cycle('rowA', 'rowB')}
-          %td= user.username
-          %td= user.full_name
+          %td= user.first_name
+          %td= user.last_name
           %td= user.gender.name
+          %td= user.birthdate.strftime("%B %d")
+          %td= user.username
           %td= link_to 'Show', user
           %td
             - if current_user == user

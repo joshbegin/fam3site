@@ -57,6 +57,7 @@ class User < ActiveRecord::Base
   #default_scope order('first_name ASC')
             
   def full_name
-    @full_name = "#{first_name} #{middle_name} #{last_name}"
+    full_name = "#{first_name} #{middle_name} #{last_name}"
   end
+
 end

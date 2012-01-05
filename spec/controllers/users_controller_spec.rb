@@ -23,6 +23,7 @@ describe UsersController do
 
   before(:each) do
     user = User.create!(valid_attributes)
+    session.id = user.id
   end
   
   # This should return the minimal set of attributes required to create a valid
