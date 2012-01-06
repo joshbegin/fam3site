@@ -9,6 +9,7 @@ gem 'pg'
 gem 'heroku'
 gem 'meta_search'
 gem 'em-websocket', '0.3.5'
+gem 'nested_form', :git => 'https://github.com/fxposter/nested_form.git'
 #gem 'compass', ">= 0.11.5"
 
 # Gems used only for assets and not required
