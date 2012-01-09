@@ -7,52 +7,51 @@
           - @user.errors.full_messages.each do |msg|
             %li= msg
 
+  .grid_12.bold
+    Personal Info:
   .grid_2
     = f.label :first_name
-  .grid_10
     = f.text_field :first_name, :size => 15
-  .grid_2
-    = f.label :middle_name
-  .grid_10
-    = f.text_field :middle_name, :size => 2
-  .grid_2
+  .grid_1
+    = f.label :middle_name, 'MI'
+    = f.text_field :middle_name, :size => 1
+  .grid_2.suffix_7
     = f.label :last_name
-  .grid_10
     = f.text_field :last_name, :size => 15
-  .grid_2
-    = f.label :gender_id
-  .grid_10
-    = collection_select(:user, :gender_id, Gender.all, :id, :name, :prompt => true, :size => 10)
-  .grid_2
-    = f.label :birthdate
-  .grid_2
-    = f.text_field :birthdate, :size => 10
-  .grid_8
-    .note
-      Format: yyyy-mm-dd
   .grid_12
+    = collection_select(:user, :gender_id, Gender.all, :id, :name, :prompt => "Select Gender", :size => 10)
+  .grid_12
+    = f.label :birthdate
+    = f.text_field :birthdate, :size => 10
+    Format: yyyy-mm-dd
+  .clear
+  %br
+  .grid_12.bold
     Phone Numbers:
   = f.fields_for :phones
-  = f.link_to_add "Add", :phones
-
-  /= f.fields_for :phones do |builder|
-  /  = render 'phone_fields', :f => builder
-  / .grid_12
-  /   Addresses:     
-  / = f.fields_for :addresses do |address|
-  /   = render 'address_fields', :a => address
-  .grid_2 
+  .grid_12
+    = f.link_to_add "Add Phone Number", :phones
+  .clear
+  %br
+  .grid_12.bold
+    Addresses:
+  = f.fields_for :addresses
+  .grid_12
+    = f.link_to_add "Add Address", :addresses
+  .clear
+  %br
+  .grid_12.bold
+    User Info:
+  .grid_12
     = f.label :username
-  .grid_10
     = f.text_field :username, :size => 20
-  .grid_2
+  .grid_12
     = f.label :password
-  .grid_10
     = f.password_field :password, :size => 20
-  .grid_2
+  .grid_12
     = f.label :password_confirmation
-  .grid_10
     = f.password_field :password_confirmation, :size => 20
+  .clear
   .actions
     .grid_12.show
       = f.submit 'Save'

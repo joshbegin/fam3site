@@ -243,3 +243,11 @@ a {
   -webkit-border-radius: 10px;
   border-radius:         10px;
 }
+
+.bold {
+  font-weight: bold;
+  background-color: $blue1;
+  color: $blue4;
+  padding: 3px;
+  margin-bottom: 5px;
+}

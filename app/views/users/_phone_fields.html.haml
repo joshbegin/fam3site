@@ -1,9 +1,7 @@
-.grid_1.prefix_1
-  = f.label :number, "Number"
 .grid_2
-  = f.telephone_field :number, :size => 20
-.grid_2
-  = f.collection_select :phone_type_id, PhoneType.all, :id, :name, :prompt => true
-.grid_1.suffix_5
-  = f.link_to_remove "Remove"
+  = f.label :number
+  = f.text_field :number, :size => 20
+.grid_4.suffix_5
+  = f.collection_select :phone_type_id, PhoneType.all, :id, :name, :prompt => "Select Type"
+  = f.link_to_remove "Remove Number"
 .clear

@@ -1,7 +1,9 @@
-- if current_user
-  Logged in as #{current_user.username}
-  = link_to "Log out", signout_path
-- else
-  = link_to "Sign up", signup_path
-  or
-  = link_to "Log in", signin_path
+= form_tag sessions_path do
+  .grid_12
+    = label_tag :username
+    = text_field_tag :username, params[:username]
+  .grid_12
+    = label_tag :password
+    = password_field_tag :password
+  .grid_1.suffix_11.show
+    .actions= submit_tag "Log in"

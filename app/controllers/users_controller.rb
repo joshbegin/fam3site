@@ -67,11 +67,9 @@ class UsersController < ApplicationController
       flash[:failure] = "Only new users can sign up"
       redirect_to users_path
     else
-      3.times do
-        @user.phones.build
-      #@user.addresses.build
+      @user.phones.build
+      @user.addresses.build
       #@user.emails.build
-      end
       respond_to do |format|
         format.html # new.html.erb
         format.json { render json: @user }
@@ -83,7 +81,6 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @title = "Edit user"
-    @user.phones.build
   end
 
   # POST /users

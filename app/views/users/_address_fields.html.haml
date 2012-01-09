@@ -1,12 +1,15 @@
-.prefix_1.grid_3.suffix_8
-  = a.text_field :line_1, :size => 30
-.prefix_1.grid_2
-  = a.text_field :city
+.grid_4.suffix_8
+  = f.label :line_1, 'Address'
+  = f.text_field :line_1, :size => 30
+.grid_3
+  = f.label :city
+  = f.text_field :city
 .grid_2
-  = a.collection_select :state_id, State.all, :id, :name, :prompt => true
-.grid_1.suffix_6
-  = a.text_field :zip, :size => 5
-.prefix_1.grid_2
-  = a.label :content, "Address Type"
-.grid_1.suffix_8
-  = a.collection_select :address_type_id, AddressType.all, :id, :name, :prompt => true
+  = f.collection_select :state_id, State.all, :id, :name, :prompt => 'Select State'
+.grid_1.suffix_5
+  = f.label :zip
+  = f.text_field :zip, :size => 7
+.grid_12
+  = f.collection_select :address_type_id, AddressType.all, :id, :name, :prompt => "Select Type"
+  = f.link_to_remove "Remove Address"
+.clear

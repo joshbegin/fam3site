@@ -7,4 +7,10 @@
 //= require jquery_ujs
 //= require_tree .
 //= require nested_form
+//= require jquery.infieldlabel.js
+//= require jquery.infieldlabel.min.js
+
+$(document).ready(function(){
+  $("label").inFieldLabels();
+});
 
