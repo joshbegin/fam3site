@@ -51,4 +51,20 @@ class PagesController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def addresses
+    if current_user
+      @title = "Addresses"
+      @search = User.search(params[:search])
+      @users = @search.all
+      
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @users }
+      end
+    else
+      flash[:failure] = "Must be logged in to view users"
+      redirect_to root_path
+    end
+  end
 end

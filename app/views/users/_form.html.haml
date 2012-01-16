@@ -41,6 +41,13 @@
   .clear
   %br
   .grid_12.bold
+    Email Addresses:
+  = f.fields_for :emails
+  .grid_12
+    = f.link_to_add "Add Email Address", :emails
+  .clear
+  %br
+  .grid_12.bold
     User Info:
   .grid_12
     = f.label :username

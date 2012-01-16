@@ -69,7 +69,7 @@ class UsersController < ApplicationController
     else
       @user.phones.build
       @user.addresses.build
-      #@user.emails.build
+      @user.emails.build
       respond_to do |format|
         format.html # new.html.erb
         format.json { render json: @user }

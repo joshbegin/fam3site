@@ -1,0 +1,7 @@
+.grid_3
+  = f.label :address
+  = f.email_field :address
+.grid_4.suffix_4
+  = f.collection_select :email_type_id, EmailType.all, :id, :name, :prompt => "Select Type"
+  = f.link_to_remove "Remove Address"
+.clear

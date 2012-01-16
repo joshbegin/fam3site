@@ -14,13 +14,34 @@
   %b Birthdate:
 .grid_10.show
   = @user.birthdate.strftime("%B %d")
-.grid_2.show
-  %b Phone Numbers:
+- unless @user.phones.blank?
+  .grid_2.show
+    %b Phone Numbers:
 .grid_10.show
   - @user.phones.each do |phone| 
     = "#{phone.phone_type.name}: #{number_to_phone(phone.number, :area_code => true, :delimiter => '-')}"
     %br
-
+- unless @user.addresses.blank?
+  .grid_2.show
+    %b Addresses:
+.grid_10.show
+  - @user.addresses.each do |address|
+    %b
+      = address.address_type.name + ":"
+    %br
+    = address.line_1
+    %br
+    = "#{address.city}, #{address.state.name} #{address.zip}"
+    .clear
+    %br
+- unless @user.emails.blank?
+  .grid_2.show
+    %b Email Addresses:
+.grid_10.show
+  - @user.emails.each do |email| 
+    = "#{email.email_type.name}: #{email.address}"
+    .clear
+    %br
 .grid_12.show
   - if current_user == @user
     = link_to 'Edit', edit_user_path(@user)

@@ -1,0 +1,21 @@
+.grid_12
+  %h1 Addresses
+
+.grid_12
+  = form_for @search do |f|
+    = f.label :first_name_contains, "First Name"
+    = f.text_field :first_name_contains
+    = f.label :last_name_contains, "Last Name"
+    = f.text_field :last_name_contains, :include_blank => true
+    = f.submit
+    
+.grid_12
+  - @users.each do |user|
+    - user.addresses.each do |address|
+      = "#{address.user.full_name} - #{address.address_type.name}"
+      %br
+      = address.line_1
+      %br
+      = "#{address.city}, #{address.state.name} #{address.zip}"
+      %br
+      %br
