@@ -8,8 +8,8 @@
 .grid_4
   %table
     %tr
-      %th= sort_link @search, :first_name 
-      %th= sort_link @search, :number, 'Home #'
+      %th Name
+      %th Home #
     - @home_phones.each do |phone|
       %tr{:class => cycle('rowA', 'rowB')}
         %td= link_to phone.user.full_name, phone.user

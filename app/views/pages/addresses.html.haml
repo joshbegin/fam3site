@@ -9,13 +9,24 @@
     = f.text_field :last_name_contains, :include_blank => true
     = f.submit
     
-.grid_12
-  - @users.each do |user|
-    - user.addresses.each do |address|
-      = "#{address.user.full_name} - #{address.address_type.name}"
+.clear
+%br
+
+- @users.each do |user|
+  .grid_3.suffix_9  
+    %b
+      = user.full_name
+    .grid_12
       %br
-      = address.line_1
-      %br
-      = "#{address.city}, #{address.state.name} #{address.zip}"
-      %br
-      %br
+      - if user.addresses.blank?
+        No addresses on file
+      - else
+        - user.addresses.each do |address|
+          = address.address_type.name
+          %br
+          = address.line_1
+          %br
+          = "#{address.city}, #{address.state.name} #{address.zip}"
+          .clear
+          %br
+    %hr

@@ -1,51 +1,19 @@
-.grid_2.show
-  %b Name:
-.grid_10.show  
-  = @user.full_name
-.grid_2.show
-  %b Username:
-.grid_10.show
-  = @user.username
-.grid_2.show
-  %b Gender:
-.grid_10.show
-  = @user.gender.name
-.grid_2.show
-  %b Birthdate:
-.grid_10.show
-  = @user.birthdate.strftime("%B %d")
-- unless @user.phones.blank?
-  .grid_2.show
-    %b Phone Numbers:
-.grid_10.show
-  - @user.phones.each do |phone| 
-    = "#{phone.phone_type.name}: #{number_to_phone(phone.number, :area_code => true, :delimiter => '-')}"
-    %br
-- unless @user.addresses.blank?
-  .grid_2.show
-    %b Addresses:
-.grid_10.show
-  - @user.addresses.each do |address|
-    %b
-      = address.address_type.name + ":"
-    %br
-    = address.line_1
-    %br
-    = "#{address.city}, #{address.state.name} #{address.zip}"
-    .clear
-    %br
-- unless @user.emails.blank?
-  .grid_2.show
-    %b Email Addresses:
-.grid_10.show
-  - @user.emails.each do |email| 
-    = "#{email.email_type.name}: #{email.address}"
-    .clear
-    %br
-.grid_12.show
-  - if current_user == @user
-    = link_to 'Edit', edit_user_path(@user)
-    \|
-  = link_to 'Back', users_path
-  \|
-  = link_to 'Users', users_path
+%label{:class => "label"}= t("activerecord.attributes.user.first_name", :default => t("activerecord.labels.first_name", :default => "First name")) + ":"
+%p= @user.first_name
+%label{:class => "label"}= t("activerecord.attributes.user.middle_name", :default => t("activerecord.labels.middle_name", :default => "Middle name")) + ":"
+%p= @user.middle_name
+%label{:class => "label"}= t("activerecord.attributes.user.last_name", :default => t("activerecord.labels.last_name", :default => "Last name")) + ":"
+%p= @user.last_name
+%label{:class => "label"}= t("activerecord.attributes.user.gender_id", :default => t("activerecord.labels.gender_id", :default => "Gender")) + ":"
+%p= @user.gender_id
+%label{:class => "label"}= t("activerecord.attributes.user.birthdate", :default => t("activerecord.labels.birthdate", :default => "Birthdate")) + ":"
+%p= @user.birthdate
+%label{:class => "label"}= t("activerecord.attributes.user.username", :default => t("activerecord.labels.username", :default => "Username")) + ":"
+%p= @user.username
+%label{:class => "label"}= t("activerecord.attributes.user.password_digest", :default => t("activerecord.labels.password_digest", :default => "Password digest")) + ":"
+%p= @user.password_digest
+
+.form-actions
+  = link_to "Back", users_path, :class => 'btn'
+  = link_to "Edit", edit_user_path(@user), :class => 'btn'
+  = link_to "Delete", user_path(@user), :method => "delete", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn'
