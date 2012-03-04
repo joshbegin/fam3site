@@ -21,6 +21,7 @@ $green1: #3B5323;
 $green2: #C1FFC1;
 
 
+/*
 header .container_12 {
   background: $white;
   border: $blue4 solid 2px;
@@ -34,8 +35,8 @@ footer .container_12 {
 form .grid_1, .grid_2, .grid_3, .grid_4, .grid_5, .grid_6, .grid_7, .grid_8, .grid_9, .grid_10, .grid_11, .grid_12 {
   padding-bottom: 5px;
 }
-
-.address {
+*/
+/*.address {
   border: $blue4 solid 2px;
 }
 
@@ -72,26 +73,25 @@ section .container_12 {
   background: $white;
   border: $blue4 solid 2px;
 }
-
-body {
+*/
+/*body {
   background-image: url('/assets/1.jpg');
-  color: $black;
+  /*color: $black;
   font-family: 'Questrial', san-serif;
   font-size: 13px;
   line-height: 18px;
   // margin-right: 10%;
   // margin-left: 10%;
 }
-
-// section {
-  /*margin-top: 1em;*/
+*/
+/*// section {
   // padding: 20px;
   // // background: $white;
   // height: 120%;
   // border: 2px solid $blue4;
 // }
-
-.button {
+*/
+/*.button {
   background: $blue1;
   // margin-left: auto;
   // margin-right: auto;
@@ -123,10 +123,10 @@ body {
   // position: relative;
   margin: 10px;
 }
-  
+*/  
 /* Navigation */
 
-nav {
+/*nav {
   text-align: right;
   // background-color: $blue1;
   // padding: 0 0.7em;
@@ -235,9 +235,9 @@ a {
   color: #660000;
   border: solid 2px #FF0011;
 }
-
+*/
 /* Round corners */
-
+/*
 .round {
   -moz-border-radius:    10px;
   -webkit-border-radius: 10px;
@@ -250,4 +250,4 @@ a {
   color: $blue4;
   padding: 3px;
   margin-bottom: 5px;
-}
+}*/
