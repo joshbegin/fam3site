@@ -2,12 +2,12 @@
 
 FactoryGirl.define do
   factory :user do
-    first_name "MyString"
-    middle_name "MyString"
-    last_name "MyString"
+    sequence(:first_name)  { |n| "First#{n}" }
+    sequence(:middle_name) { |n| "Middle#{n}"}
+    sequence(:last_name) { |n| "Last#{n}"}
     gender_id 1
-    birthdate "2011-10-24"
-    username "MyString"
+    birthdate "2001-10-24"
+    sequence(:username) { |n| "User#{n}"}
     password "foobar"
     password_confirmation "foobar"
   end

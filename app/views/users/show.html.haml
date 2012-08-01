@@ -1,19 +1,62 @@
-%label{:class => "label"}= t("activerecord.attributes.user.first_name", :default => t("activerecord.labels.first_name", :default => "First name")) + ":"
-%p= @user.first_name
-%label{:class => "label"}= t("activerecord.attributes.user.middle_name", :default => t("activerecord.labels.middle_name", :default => "Middle name")) + ":"
-%p= @user.middle_name
-%label{:class => "label"}= t("activerecord.attributes.user.last_name", :default => t("activerecord.labels.last_name", :default => "Last name")) + ":"
-%p= @user.last_name
-%label{:class => "label"}= t("activerecord.attributes.user.gender_id", :default => t("activerecord.labels.gender_id", :default => "Gender")) + ":"
-%p= @user.gender_id
-%label{:class => "label"}= t("activerecord.attributes.user.birthdate", :default => t("activerecord.labels.birthdate", :default => "Birthdate")) + ":"
-%p= @user.birthdate
-%label{:class => "label"}= t("activerecord.attributes.user.username", :default => t("activerecord.labels.username", :default => "Username")) + ":"
-%p= @user.username
-%label{:class => "label"}= t("activerecord.attributes.user.password_digest", :default => t("activerecord.labels.password_digest", :default => "Password digest")) + ":"
-%p= @user.password_digest
-
-.form-actions
-  = link_to "Back", users_path, :class => 'btn'
-  = link_to "Edit", edit_user_path(@user), :class => 'btn'
-  = link_to "Delete", user_path(@user), :method => "delete", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn'
+.row
+  .span4
+    %p
+      %h1
+        = gravatar_for @user unless @user.emails.blank?
+        = @user.full_name
+    %p
+      %b Username
+      %br
+      = @user.username
+    %p
+      %b Gender
+      %br
+      = @user.gender.name
+    %p
+      %b Birthdate
+      %br
+      = @user.birthdate.strftime("%B %d")
+  .span4
+    %p
+      - unless @user.phones.blank?
+        %b Phone Numbers:
+        %br
+      - @user.phones.each do |phone| 
+        = "#{phone.phone_type.name}: #{number_to_phone(phone.number, :area_code => true, :delimiter => '-')}"
+        %br
+    %p
+      - unless @user.addresses.blank?
+        %b Addresses:
+        %br
+      - @user.addresses.each do |address|
+        %b
+          = address.address_type.name + ":"
+        %br
+        = address.line_1
+        %br
+        = "#{address.city}, #{address.state.name} #{address.zip}"
+        %br
+    %p
+      - unless @user.emails.blank?
+        %b Email Addresses:
+        %br
+      - @user.emails.each do |email| 
+        = "#{email.email_type.name}: #{email.address}"
+        %br
+.row
+  .span8
+    .form-actions
+      = link_to users_path, class: 'btn' do
+        %i.icon-backward
+        Back
+      - if current_user == @user 
+        = link_to edit_user_path(@user), class: 'btn' do
+          %i.icon-pencil
+          Edit
+      = link_to users_path, class: 'btn' do
+        %i.icon-home
+        Home
+      - if current_user == @user
+        = link_to user_path(@user), method: :delete, confirm: "Are you sure?", default: "Are you sure?", class: 'btn btn-danger'  do
+          %i.icon-remove.icon-white 
+          Delete

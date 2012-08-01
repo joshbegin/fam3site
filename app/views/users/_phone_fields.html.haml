@@ -1,7 +1,6 @@
-.grid_2
-  = f.label :number
-  = f.text_field :number, :size => 20
-.grid_4.suffix_5
-  = f.collection_select :phone_type_id, PhoneType.all, :id, :name, :prompt => "Select Type"
-  = f.link_to_remove "Remove Number"
-.clear
+.control-group
+  = f.label "Phone Number", class: 'control-label'
+  .controls
+    = f.text_field :number, :class => 'text_field'
+    = f.collection_select :phone_type_id, PhoneType.all, :id, :name, :prompt => "Select Type", class: 'select_type'
+    / = f.link_to_remove "Remove Number"

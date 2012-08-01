@@ -1,9 +1,16 @@
 = form_tag sessions_path do
-  .grid_12
-    = label_tag :username
-    = text_field_tag :username, params[:username]
-  .grid_12
-    = label_tag :password
-    = password_field_tag :password
-  .grid_1.suffix_11.show
-    .actions= submit_tag "Log in"
+  .row
+    .span4
+      = label_tag :username
+      = text_field_tag :username, params[:username]
+  .row
+    .span4
+      = label_tag :password
+      = password_field_tag :password
+  .row
+    .span4  
+      .form-actions
+        %button{ class: "btn-success", :type => "submit"} <i class="icon-ok icon-white"></i> Log in
+        = link_to root_path, class: 'btn btn-danger' do
+          %i.icon-remove.icon-white
+          Cancel

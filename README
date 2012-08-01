@@ -1,3 +1,5 @@
 Rails app to track family members' contact information while helping me learn. 
 This will be a work in progress and will likely get scrapped as I learn more
 or decide to start over as I have done several times already.
+
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/joshbegin/fam3site)

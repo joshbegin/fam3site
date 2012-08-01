@@ -4,7 +4,13 @@ class Email < ActiveRecord::Base
   
   belongs_to :user
   belongs_to :email_type
-  
-  validates_format_of :address, :with => /.+\@.+\..+/
 
+  before_save do
+    self.address = address.downcase
+  end
+  
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :address, format: { with: VALID_EMAIL_REGEX },
+					  uniqueness: { case_sensitive: false }
+  
 end

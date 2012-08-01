@@ -1,24 +1,25 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.1'
-
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
+gem 'rails', '3.2.1'
+# try adding https://github.com/tye/rubyception
+# try adding https://github.com/jeremyw/stamp
 
 gem 'pg'
 gem 'heroku'
 gem 'meta_search'
-gem 'em-websocket', '0.3.5'
+gem 'em-websocket'
 gem 'nested_form', :git => 'https://github.com/fxposter/nested_form.git'
-#gem 'compass', ">= 0.11.5"
+gem 'will_paginate', '3.0.3'
+gem 'bootstrap-will_paginate', '0.0.6'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.1.4'
-  gem 'coffee-rails', '~> 3.1.1'
+  gem 'sass-rails'
+  gem 'coffee-rails'
   gem 'uglifier', '>= 1.0.3'
   gem 'twitter-bootstrap-rails'
+  gem 'bootstrap-sass', '2.0.0'
 end
 
 gem 'jquery-rails'
@@ -27,20 +28,23 @@ gem "haml-rails", :group => :development
 gem "database_cleaner", :group => :test
 
 group :development, :test do
-  gem "rspec-rails"
-  gem "factory_girl_rails", :group => :test
-  gem "cucumber-rails", :group => :test
-  gem 'rb-fsevent', :git => 'git://github.com/ttilley/rb-fsevent.git', :branch => 'pre-compiled-gem-one-off' #, :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem "rspec-rails", '2.8.1'
+  gem "factory_girl_rails", '1.4.0'
+  gem "cucumber-rails"
+  gem 'rb-fsevent', :require => false
   gem 'guard-rspec'
   gem 'guard-livereload'
-  gem 'growl'
+  gem 'guard-spork', '0.3.2'
+  gem 'spork', '0.9.0'
   gem "capybara"
   gem "launchy"
   gem "hirb"
+  # go to /rails/routes to see output of rake routes in development
+  gem 'sextant'
 end
 
 # To use ActiveModel has_secure_password
- gem 'bcrypt-ruby', '~> 3.0.1'
+ gem 'bcrypt-ruby'
 
 # Use unicorn as the web server
 # gem 'unicorn'

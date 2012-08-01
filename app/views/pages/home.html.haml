@@ -1,5 +1,14 @@
-= link_to "Sign up!", signup_path, :class => "button"
-.grid_2.prefix_2.suffix_3
-  = link_to "Log in", signin_path, :class => "button"
-.grid_12.center
-  = "Currently #{@users.count} users are signed up for this site"
+.row
+  .span5.hero-unit
+    %h1 Hello, family!
+    %p Please sign up or log in to stay up-to-date
+    .row
+      %p
+        .span2
+          = link_to "Sign up!", signup_path, :class => "btn btn-primary btn-large"
+        .span2
+          = link_to "Log in", signin_path, :class => "btn btn-primary btn-large"
+    .row
+      .span3
+        %br
+        %em= "Currently #{@users.count} users are signed up for this site"
