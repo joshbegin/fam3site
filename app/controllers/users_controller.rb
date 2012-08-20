@@ -1,13 +1,14 @@
 class UsersController < ApplicationController
+  before_filter :signed_in_user, only: [:index, :edit, :update]
   before_filter :get_user, :only => [:edit, :update, :destroy]
   before_filter :user_auth, :only => [:edit, :update, :destroy]
  
   #need to add rescue ActiveRecord::RecordNotFound, etc...
 
   def user_auth
-    if session[:user_id] != @user.id
+    unless session[:user_id] == @user.id
       flash[:failure] = "Users can only change their own account"
-      redirect_to :back
+      redirect_to users_path
     end
   end
   
@@ -19,7 +20,6 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     if current_user
-      @title = "Users"
       # .search is used by meta_search
       @search = User.search(params[:search])
       @users = @search.all
@@ -60,16 +60,15 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
-    @title = "Create user"
     @user = User.new
     
     if current_user
       flash[:failure] = "Only new users can sign up"
       redirect_to users_path
     else
-      @user.phones.build
-      @user.addresses.build
-      @user.emails.build
+      3.times { @user.phones.build }
+      3.times { @user.addresses.build }
+      3.times { @user.emails.build }
       respond_to do |format|
         format.html # new.html.erb
         format.json { render json: @user }
@@ -80,13 +79,11 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @title = "Edit user"
   end
 
   # POST /users
   # POST /users.json
   def create
-    @title = "Create user"
     @user = User.new(params[:user])
     
     unless current_user
@@ -109,7 +106,6 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
-    @title = "Edit user"
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -128,7 +124,6 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @title = "Delete user"
     @user.destroy
     session[:user_id] = nil
 

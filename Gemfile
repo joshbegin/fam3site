@@ -11,6 +11,10 @@ gem 'em-websocket'
 gem 'nested_form', :git => 'https://github.com/fxposter/nested_form.git'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
+# Need to remove bootstrap messages code from the application_helper.rb and 
+# _flash_messages.html.haml before adding this
+# gem "bootstrap_flash_messages"
+gem 'faker', '1.0.1'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -41,6 +45,7 @@ group :development, :test do
   gem "hirb"
   # go to /rails/routes to see output of rake routes in development
   gem 'sextant'
+  gem 'annotate', '~> 2.4.1.beta'
 end
 
 # To use ActiveModel has_secure_password

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111029213133) do
+ActiveRecord::Schema.define(:version => 20120815020629) do
 
   create_table "address_types", :force => true do |t|
     t.string   "name"
@@ -28,8 +28,9 @@ ActiveRecord::Schema.define(:version => 20111029213133) do
     t.string   "zip"
     t.integer  "user_id"
     t.integer  "address_type_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.boolean  "primary",         :default => false
   end
 
   create_table "email_types", :force => true do |t|
@@ -44,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20111029213133) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "primary",       :default => false
   end
 
   create_table "genders", :force => true do |t|
@@ -64,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20111029213133) do
     t.integer  "phone_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "primary",       :default => false
   end
 
   create_table "states", :force => true do |t|
@@ -82,6 +85,7 @@ ActiveRecord::Schema.define(:version => 20111029213133) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "admin",           :default => false
   end
 
 end

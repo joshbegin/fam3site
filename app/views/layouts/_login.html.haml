@@ -10,7 +10,9 @@
   .row
     .span4  
       .form-actions
-        %button{ class: "btn-success", :type => "submit"} <i class="icon-ok icon-white"></i> Log in
+        %button{ class: "btn btn-success", :type => "submit"} Log in
+        / <i class="icon-ok icon-white"></i> 
+          
         = link_to root_path, class: 'btn btn-danger' do
-          %i.icon-remove.icon-white
+          / %i.icon-remove.icon-white
           Cancel

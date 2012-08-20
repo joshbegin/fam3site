@@ -1,3 +1,5 @@
 - provide(:title, 'Contact')
-%h1 Pages#contact
-%p Find me in app/views/pages/contact.html.haml
+.span6
+  %h1 Contact Us
+.span6
+  = mail_to "joshbegin@gmail.com", "Email", encode: "hex"

@@ -22,9 +22,10 @@ describe Address do
   it { should respond_to(:line_2) }
   it { should respond_to(:line_3) }
   it { should respond_to(:city) }
-  it { should respond_to(:state_id) }
+  it { should respond_to(:state) }
   it { should respond_to(:zip) }
-  it { should respond_to(:address_type_id) }
+  it { should respond_to(:address_type) }
+  it { should respond_to(:primary) }
   it { should respond_to(:user) }
   its(:user) { should == @user }
 

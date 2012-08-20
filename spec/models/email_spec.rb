@@ -13,6 +13,12 @@ describe Email do
 
   subject { @email }
 
+  it { should respond_to(:address) }
+  it { should respond_to(:email_type) }
+  it { should respond_to(:primary) }
+  it { should respond_to(:user) }
+  its(:user) { should == @user }
+
   it { should be_valid }
     
   it "should accept valid email addresses" do

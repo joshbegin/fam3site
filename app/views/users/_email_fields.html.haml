@@ -1,8 +1,6 @@
 .control-group
   = f.label :address, "Email", class: 'control-label'
   .controls
-    = f.email_field :address, class: 'text_field', placeholder: "Address"
-.control-group
-  .controls
+    = f.email_field :address, class: 'text_field', placeholder: "sample@sample.com"
     = f.collection_select :email_type_id, EmailType.all, :id, :name, :prompt => "Select Type", class: "select_field"
   / = f.link_to_remove "Remove Address"

@@ -3,7 +3,7 @@ class Phone < ActiveRecord::Base
   belongs_to :user, :inverse_of => :phones
   belongs_to :phone_type, :inverse_of => :phones
   
-  attr_accessible :number, :phone_type_id
+  attr_accessible :number, :phone_type_id, :primary
   
   before_validation do
     self.number = number.gsub(/[^0-9]/, "") if attribute_present?("number")

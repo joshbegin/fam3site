@@ -13,6 +13,12 @@ describe Phone do
 
   subject { @phone }
 
+  it { should respond_to(:number) }
+  it { should respond_to(:phone_type) }
+  it { should respond_to(:primary) }
+  it { should respond_to(:user) }
+  its(:user) { should == @user }
+
   it { should be_valid }
   
   it "should reject invalid phone numbers" do

@@ -21,17 +21,17 @@ class User < ActiveRecord::Base
   #   user.phones
   # end  
 
-  before_save(:on => :create) do
-    self.first_name = first_name.capitalize
-    self.middle_name = middle_name.capitalize
-    self.last_name = last_name.capitalize
-  end
+  # before_save(:on => :create) do
+  #   self.first_name = first_name.capitalize
+  #   self.middle_name = middle_name.capitalize
+  #   self.last_name = last_name.capitalize
+  # end
 
-  before_save(:on => :update) do
-    self.first_name = first_name.capitalize
-    self.middle_name = middle_name.capitalize
-    self.last_name = last_name.capitalize
-  end
+  # before_save(:on => :update) do
+  #   self.first_name = first_name.capitalize
+  #   self.middle_name = middle_name.capitalize
+  #   self.last_name = last_name.capitalize
+  # end
 
   # before_validation(:on => :create) do
   #   bd = birthdate.split('-')# if attribute_present?("number")

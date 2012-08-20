@@ -7,47 +7,58 @@
           %li= msg
   %fieldset
     %legend= "#{controller.action_name.capitalize} User"
-    .control-group
-      = f.label :first_name, class: 'control-label'
-      .controls
-        = f.text_field :first_name, class: 'text_field'
-    .control-group
-      = f.label :middle_name, class: 'control-label'
-      .controls
-        = f.text_field :middle_name, class: 'text_field'
-    .control-group
-      = f.label :last_name, class: 'control-label'
-      .controls
-        = f.text_field :last_name, :class => 'text_field'
-    .control-group
-      = f.label :gender_id, class: 'control-label'
-      .controls
-        = collection_select(:user, :gender_id, Gender.all, :id, :name, :prompt => "Select Gender", class: 'select_field')
-    .control-group
-      = f.label :birthdate, class: 'control-label'
-      .controls
-        = f.date_select :birthdate, class: 'date_select'
-    .control-group
-      = f.fields_for :phones
-      / = f.link_to_add "Add Phone Number", :phones, class: 'control-label'
-    .control-group
-      = f.fields_for :addresses
-      / = f.link_to_add "Add Address", :addresses
-    .control-group
-      = f.fields_for :emails
-      / = f.link_to_add "Add Email Address", :emails
-    .control-group
-      = f.label :username, class: 'control-label'
-      .controls
-        = f.text_field :username, class: 'text_field'
-    .control-group
-      = f.label :password, class: 'control-label'
-      .controls
-        = f.password_field :password, class: 'password_field'
-    .control-group
-      = f.label :password_confirmation, class: 'control-label'
-      .controls
-        = f.password_field :password_confirmation, class: 'password_field'
+    .well
+      %br
+      .control-group
+        = f.label :first_name, class: 'control-label'
+        .controls
+          = f.text_field :first_name, class: 'text_field'
+      .control-group
+        = f.label :middle_name, class: 'control-label'
+        .controls
+          = f.text_field :middle_name, class: 'text_field'
+      .control-group
+        = f.label :last_name, class: 'control-label'
+        .controls
+          = f.text_field :last_name, :class => 'text_field'
+      .control-group
+        = f.label :gender_id, class: 'control-label'
+        .controls
+          = collection_select(:user, :gender_id, Gender.all, :id, :name, :prompt => "Select Gender", class: 'select_field')
+      .control-group
+        = f.label :birthdate, class: 'control-label'
+        .controls
+          = f.date_select :birthdate, class: 'date_select', start_year: 1900, end_year: Time.now.year, order: [:month, :day, :year]
+    .well
+      %h3 Phone Numbers
+      %hr
+      .control-group
+        = f.fields_for :phones
+        / = f.link_to_add "Add Phone Number", :phones, class: 'control-label'
+    .well
+      %h3 Addresses
+      .control-group
+        = f.fields_for :addresses
+        / = f.link_to_add "Add Address", :addresses
+    .well
+      %h3 Emails
+      %hr
+      .control-group
+        = f.fields_for :emails
+        / = f.link_to_add "Add Email Address", :emails
+    .well
+      .control-group
+        = f.label :username, class: 'control-label'
+        .controls
+          = f.text_field :username, class: 'text_field'
+      .control-group
+        = f.label :password, class: 'control-label'
+        .controls
+          = f.password_field :password, class: 'password_field'
+      .control-group
+        = f.label :password_confirmation, class: 'control-label'
+        .controls
+          = f.password_field :password_confirmation, class: 'password_field'
 
     .form-actions
       = f.submit nil, :class => 'btn btn-primary'

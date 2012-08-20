@@ -1,6 +1,9 @@
 class PagesController < ApplicationController
+  before_filter :signed_in_user, only: [:birthdates, :phones, :addresses]
+  # before_filter :get_user, :only => [:birthdates, :phones, :addresses]
+  # before_filter :user_auth, :only => [:birthdates, :phones, :addresses]
+
   def home
-    @title = "Home"
     @users = User.all
 
     if current_user
@@ -9,16 +12,16 @@ class PagesController < ApplicationController
   end
 
   def about
-    @title = "About"
+    # @title = "About"
   end
 
   def contact
-    @title = "Contact"
+    # @title = "Contact"
   end
 
   def birthdates
     if current_user
-      @title = "Birthdates"
+      # @title = "Birthdates"
       @users = User.all
       @user_months = @users.group_by { |t| t.birthdate.month }
 
@@ -34,7 +37,7 @@ class PagesController < ApplicationController
 
   def phones
     if current_user
-      @title = "Phone Numbers"
+      # @title = "Phone Numbers"
       @search = Phone.search(params[:search])
       @users = @search.all
 
@@ -54,7 +57,7 @@ class PagesController < ApplicationController
 
   def addresses
     if current_user
-      @title = "Addresses"
+      # @title = "Addresses"
       @search = User.search(params[:search])
       @users = @search.all
       

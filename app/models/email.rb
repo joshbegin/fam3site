@@ -1,6 +1,6 @@
 class Email < ActiveRecord::Base
   
-  attr_accessible :address, :email_type_id
+  attr_accessible :address, :email_type_id, :primary
   
   belongs_to :user
   belongs_to :email_type
